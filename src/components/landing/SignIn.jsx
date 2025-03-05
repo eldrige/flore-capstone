@@ -1,28 +1,28 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import { useAuth } from '../contexts/AuthContext';
 
 const SignIn = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { login } = useAuth();
 
-  const API_URL = "http://localhost:5000/auth/login";
+  const API_URL = 'http://3.82.241.188/auth/login';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
+    setError('');
     setIsLoading(true);
 
     try {
-      const response = await axios.post(API_URL, { 
-        email, 
-        password 
+      const response = await axios.post(API_URL, {
+        email,
+        password,
       });
 
       // Log the response for debugging
@@ -32,37 +32,38 @@ const SignIn = () => {
       if (response.data) {
         // Extract user data first
         const userData = response.data.user || response.data;
-        
+
         // Get token
         const token = response.data.token;
-        
+
         // Then use the login function from your context
         login(userData, token);
-        
+
         // Navigate to dashboard
-        navigate("/dashboard");
-        
+        navigate('/dashboard');
+
         return; // Exit the function after successful login
       }
 
       // If we reach here, something went wrong
-      throw new Error("Invalid response format from server");
-      
+      throw new Error('Invalid response format from server');
     } catch (error) {
-      console.error("Login error details:", error);
-      
+      console.error('Login error details:', error);
+
       // Handle different types of errors
       if (error.response) {
         // The server responded with a status code outside the 2xx range
-        setError(error.response.data.message || 
-                error.response.data.error || 
-                "Server error: " + error.response.status);
+        setError(
+          error.response.data.message ||
+            error.response.data.error ||
+            'Server error: ' + error.response.status
+        );
       } else if (error.request) {
         // The request was made but no response was received
-        setError("No response from server. Please check your connection.");
+        setError('No response from server. Please check your connection.');
       } else {
         // Something happened in setting up the request
-        setError(error.message || "Failed to login. Please try again.");
+        setError(error.message || 'Failed to login. Please try again.');
       }
     } finally {
       setIsLoading(false);
@@ -118,7 +119,7 @@ const SignIn = () => {
             className="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700 transition duration-300"
             disabled={isLoading}
           >
-            {isLoading ? "Signing in..." : "Sign In"}
+            {isLoading ? 'Signing in...' : 'Sign In'}
           </button>
           <div className="mt-4 text-center">
             <a href="#" className="text-green-600 hover:underline text-sm">
@@ -127,7 +128,7 @@ const SignIn = () => {
           </div>
           <div className="mt-4 text-center">
             <span className="text-gray-600 text-sm">
-              Don't have an account?{" "}
+              Don't have an account?{' '}
               <a href="/signup" className="text-green-600 hover:underline">
                 Sign Up
               </a>

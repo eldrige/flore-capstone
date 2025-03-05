@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';  // Import Axios to make API calls
+import axios from 'axios'; // Import Axios to make API calls
 
 const SignUp = () => {
   const [name, setName] = useState('');
@@ -10,7 +10,7 @@ const SignUp = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   // API URL (Replace with your actual backend URL)
-  const API_URL = 'http://localhost:5000/auth/register';
+  const API_URL = 'http://3.82.241.188/auth/register';
 
   // Handle form submission
   const handleSubmit = async (e) => {
@@ -42,7 +42,9 @@ const SignUp = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md w-96">
-        <h2 className="text-2xl font-bold text-center mb-6 text-green-600">Create an Account</h2>
+        <h2 className="text-2xl font-bold text-center mb-6 text-green-600">
+          Create an Account
+        </h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <input
