@@ -11,6 +11,7 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
             <button 
               onClick={() => setIsSidebarOpen(!isSidebarOpen)}
               className="px-4 inline-flex items-center md:hidden"
+              data-testid="menu-button"
             >
               {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -20,7 +21,7 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
           </div>
           
           <div className="flex items-center space-x-4">
-            <button className="p-2 rounded-full hover:bg-gray-100">
+            <button className="p-2 rounded-full hover:bg-gray-100" data-testid="bell-button">
               <Bell size={20} />
             </button>
 

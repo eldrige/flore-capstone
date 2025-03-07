@@ -17,7 +17,7 @@ const SignUp = () => {
     e.preventDefault();
 
     if (!termsAgreed) {
-      alert('Please agree to the terms and conditions');
+      setError('Please agree to the terms and conditions');
       return;
     }
 
