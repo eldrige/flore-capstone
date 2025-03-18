@@ -60,7 +60,9 @@ describe('SignUp Component', () => {
     fireEvent.change(passwordInput, { target: { value: 'password123' } });
     fireEvent.click(termsCheckbox);
 
-    axios.post = vi.fn().mockImplementation(() => Promise.resolve({ data: {} }));
+    axios.post = vi
+      .fn()
+      .mockImplementation(() => Promise.resolve({ data: {} }));
 
     fireEvent.click(submitButton);
     await waitFor(() => expect(submitButton).toBeDisabled());
@@ -81,12 +83,14 @@ describe('SignUp Component', () => {
     fireEvent.change(passwordInput, { target: { value: 'password123' } });
     fireEvent.click(termsCheckbox);
 
-    axios.post = vi.fn().mockImplementation(() => Promise.resolve({ data: {} }));
+    axios.post = vi
+      .fn()
+      .mockImplementation(() => Promise.resolve({ data: {} }));
 
     fireEvent.click(submitButton);
     await waitFor(() => expect(axios.post).toHaveBeenCalledTimes(1));
     expect(axios.post).toHaveBeenCalledWith(
-      'http://3.82.241.188/auth/register',
+      'http://3.86.29.108:8000/auth/register',
       {
         name: 'Test User',
         email: 'test@example.com',
@@ -110,7 +114,9 @@ describe('SignUp Component', () => {
     fireEvent.change(passwordInput, { target: { value: 'password123' } });
     fireEvent.click(termsCheckbox);
 
-    axios.post = vi.fn().mockImplementation(() => Promise.reject(new Error('API Error')));
+    axios.post = vi
+      .fn()
+      .mockImplementation(() => Promise.reject(new Error('API Error')));
 
     fireEvent.click(submitButton);
     await waitFor(() =>

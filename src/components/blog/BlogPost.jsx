@@ -13,7 +13,7 @@ const BlogPost = () => {
     const fetchBlogPost = async () => {
       try {
         const response = await axios.get(
-          `http://3.82.241.188/api/blog-posts/${id}`
+          `http://3.86.29.108:8000/api/blog-posts/${id}`
         );
         setPost(response.data);
       } catch (err) {
@@ -116,7 +116,7 @@ const BlogPost = () => {
             src={
               post.image_path?.startsWith('http')
                 ? post.image_path
-                : `http://3.82.241.188/${post.image_path}`
+                : `http://3.86.29.108:8000/${post.image_path}`
             }
             alt={post.title}
             className="w-full h-96 object-cover rounded-lg shadow-lg"

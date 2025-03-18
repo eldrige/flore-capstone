@@ -12,7 +12,7 @@ const SignIn = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
 
-  const API_URL = 'http://3.82.241.188/auth/login';
+  const API_URL = 'http://3.86.29.108:8000/auth/login';
 
   const handleSubmit = async (e) => {
     e.preventDefault();

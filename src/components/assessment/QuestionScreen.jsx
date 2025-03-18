@@ -19,7 +19,7 @@ const QuestionScreen = () => {
   console.log('localStorage token:', localStorage.getItem('token'));
 
   useEffect(() => {
-    fetch(`http://3.82.241.188/api/assessments/${assessmentId}/questions`)
+    fetch(`http://3.86.29.108:8000/api/assessments/${assessmentId}/questions`)
       .then((response) => response.json())
       .then((data) => {
         console.log('Fetched Questions:', data);
@@ -82,7 +82,7 @@ const QuestionScreen = () => {
       setScore(result);
 
       const response = await fetch(
-        `http://3.82.241.188/api/assessments/${assessmentId}/submit`,
+        `http://3.86.29.108:8000/api/assessments/${assessmentId}/submit`,
         {
           method: 'POST',
           headers: {

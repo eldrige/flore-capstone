@@ -17,7 +17,7 @@ const Assessment = () => {
     fetchUserData();
 
     // Fetch available assessments
-    fetch('http://3.82.241.188/api/assessments/all')
+    fetch('http://3.86.29.108:8000/api/assessments/all')
       .then((response) => response.json())
       .then((data) => setAssessments(data))
       .catch((error) => console.error('Error fetching assessments:', error));
@@ -38,7 +38,7 @@ const Assessment = () => {
         return;
       }
 
-      const response = await axios.get('http://3.82.241.188/api/profile', {
+      const response = await axios.get('http://3.86.29.108:8000/api/profile', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -104,7 +104,7 @@ const Assessment = () => {
 
       // Modified query to include assessment_reports.id
       const response = await axios.get(
-        `http://3.82.241.188/api/user-assessments/history?userId=${userId}`,
+        `http://3.86.29.108:8000/api/user-assessments/history?userId=${userId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -177,7 +177,7 @@ const Assessment = () => {
                 src={
                   userData.profile_picture.startsWith('http')
                     ? userData.profile_picture
-                    : `http://3.82.241.188/${
+                    : `http://3.86.29.108:8000/${
                         userData.profile_picture.startsWith('/')
                           ? userData.profile_picture.substring(1)
                           : userData.profile_picture

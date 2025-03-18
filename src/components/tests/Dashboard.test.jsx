@@ -65,15 +65,15 @@ describe('Dashboard UI Component', () => {
     const localStorage = {};
 
     axios.get = vi.fn().mockImplementation((url) => {
-      if (url === 'http://3.82.241.188/api/profile') {
+      if (url === 'http://3.86.29.108:8000/api/profile') {
         return mockResolvedValue(mockUserData);
       } else if (
-        url.startsWith('http://3.82.241.188/api/user-assessments/history')
+        url.startsWith('http://3.86.29.108:8000/api/user-assessments/history')
       ) {
         return mockResolvedValue(mockAssessmentHistory);
-      } else if (url === 'http://3.82.241.188/api/all-skills') {
+      } else if (url === 'http://3.86.29.108:8000/api/all-skills') {
         return mockResolvedValue({ skills: mockSkills, hasMore: false });
-      } else if (url === 'http://3.82.241.188/api/recommended-skills') {
+      } else if (url === 'http://3.86.29.108:8000/api/recommended-skills') {
         return mockResolvedValue({ skills: mockSkills, hasMore: false });
       }
       return Promise.reject(new Error('URL not mocked'));

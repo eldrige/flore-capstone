@@ -45,7 +45,7 @@ const AssessmentReport = () => {
   // Fetch report data
   useEffect(() => {
     setLoading(true);
-    fetch(`http://3.82.241.188/api/assessment-report/${id}`)
+    fetch(`http://3.86.29.108:8000/api/assessment-report/${id}`)
       .then((response) => response.json())
       .then((data) => {
         const transformedData = {
@@ -86,11 +86,14 @@ const AssessmentReport = () => {
     const decodedToken = JSON.parse(atob(token.split('.')[1]));
     const userId = decodedToken.id;
 
-    fetch(`http://3.82.241.188/api/user-assessments/history?userId=${userId}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    fetch(
+      `http://3.86.29.108:8000/api/user-assessments/history?userId=${userId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
       .then((response) => response.json())
       .then((response) => {
         if (response) {
@@ -126,7 +129,7 @@ const AssessmentReport = () => {
         return;
       }
 
-      const response = await axios.get('http://3.82.241.188/api/profile', {
+      const response = await axios.get('http://3.86.29.108:8000/api/profile', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUserData(response.data);
@@ -201,7 +204,7 @@ const AssessmentReport = () => {
                 src={
                   userData.profile_picture.startsWith('http')
                     ? userData.profile_picture
-                    : `http://3.82.241.188/${
+                    : `http://3.86.29.108:8000/${
                         userData.profile_picture.startsWith('/')
                           ? userData.profile_picture.substring(1)
                           : userData.profile_picture

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Bell, User, Menu, X, ChevronDown } from 'lucide-react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+// http://3.86.29.108:8000/
 
 const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
   return (
@@ -8,7 +9,7 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between h-16">
           <div className="flex">
-            <button 
+            <button
               onClick={() => setIsSidebarOpen(!isSidebarOpen)}
               className="px-4 inline-flex items-center md:hidden"
               data-testid="menu-button"
@@ -16,17 +17,25 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
               {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
             <div className="flex-shrink-0 flex items-center">
-              <span className="text-xl font-bold text-blue-600">SkillsAssess</span>
+              <span className="text-xl font-bold text-blue-600">
+                SkillsAssess
+              </span>
             </div>
           </div>
-          
+
           <div className="flex items-center space-x-4">
-            <button className="p-2 rounded-full hover:bg-gray-100" data-testid="bell-button">
+            <button
+              className="p-2 rounded-full hover:bg-gray-100"
+              data-testid="bell-button"
+            >
               <Bell size={20} />
             </button>
 
             {/* Link to Profile Page */}
-            <Link to="/profile" className="flex items-center space-x-2 p-2 rounded-full hover:bg-gray-100">
+            <Link
+              to="/profile"
+              className="flex items-center space-x-2 p-2 rounded-full hover:bg-gray-100"
+            >
               <User size={20} />
               <ChevronDown size={16} />
             </Link>

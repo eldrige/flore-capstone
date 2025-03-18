@@ -8,8 +8,8 @@ import { describe, test, expect, vi, afterEach } from 'vitest';
 
 vi.mock('axios', () => ({
   default: {
-    post: vi.fn()
-  }
+    post: vi.fn(),
+  },
 }));
 
 describe('SignIn Component', () => {
@@ -74,9 +74,7 @@ describe('SignIn Component', () => {
 
     fireEvent.click(submitButton);
     await waitFor(() =>
-      expect(
-        screen.getByText(/API Error/i)
-      ).toBeInTheDocument()
+      expect(screen.getByText(/API Error/i)).toBeInTheDocument()
     );
   });
 
@@ -101,10 +99,13 @@ describe('SignIn Component', () => {
 
     fireEvent.click(submitButton);
     await waitFor(() => expect(axios.post).toHaveBeenCalledTimes(1));
-    expect(axios.post).toHaveBeenCalledWith('http://3.82.241.188/auth/login', {
-      email: 'test@example.com',
-      password: 'password123',
-    });
+    expect(axios.post).toHaveBeenCalledWith(
+      'http://3.86.29.108:8000/auth/login',
+      {
+        email: 'test@example.com',
+        password: 'password123',
+      }
+    );
   });
 
   test('disables submit button when loading', async () => {

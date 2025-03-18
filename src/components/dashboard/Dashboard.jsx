@@ -76,7 +76,7 @@ const Dashboard = () => {
         return;
       }
 
-      const response = await axios.get('http://3.82.241.188/api/profile', {
+      const response = await axios.get('http://3.86.29.108:8000/api/profile', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUserData(response.data);
@@ -94,14 +94,17 @@ const Dashboard = () => {
   const fetchSkills = async (page = 1) => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`http://3.82.241.188/api/all-skills`, {
-        params: {
-          page,
-          limit: 10,
-          category: selectedCategory !== 'All' ? selectedCategory : undefined,
-          search: debouncedSearchTerm || undefined,
-        },
-      });
+      const response = await axios.get(
+        `http://3.86.29.108:8000/api/all-skills`,
+        {
+          params: {
+            page,
+            limit: 10,
+            category: selectedCategory !== 'All' ? selectedCategory : undefined,
+            search: debouncedSearchTerm || undefined,
+          },
+        }
+      );
 
       const { skills, hasMore } = response.data;
 
@@ -129,7 +132,7 @@ const Dashboard = () => {
       if (!token) return;
 
       const response = await axios.get(
-        `http://3.82.241.188/api/user-assessments/history?userId=${userId}`,
+        `http://3.86.29.108:8000/api/user-assessments/history?userId=${userId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -166,7 +169,7 @@ const Dashboard = () => {
       if (!token) return;
 
       const response = await axios.get(
-        'http://3.82.241.188/api/recommended-skills',
+        'http://3.86.29.108:8000/api/recommended-skills',
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -363,7 +366,7 @@ const Dashboard = () => {
                 src={
                   userData.profile_picture.startsWith('http')
                     ? userData.profile_picture
-                    : `http://3.82.241.188/${
+                    : `http://3.86.29.108:8000/${
                         userData.profile_picture.startsWith('/')
                           ? userData.profile_picture.substring(1)
                           : userData.profile_picture
