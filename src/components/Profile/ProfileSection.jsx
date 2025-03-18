@@ -23,7 +23,7 @@ const ProfileSection = () => {
         throw new Error('No authentication token found');
       }
 
-      const response = await axios.get('http://3.86.29.108:8000/api/profile', {
+      const response = await axios.get('https://eldrige.engineer/api/profile', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -98,7 +98,7 @@ const ProfileSection = () => {
             <img
               src={
                 userData.profile_picture
-                  ? `http://3.86.29.108:8000/${userData.profile_picture}`
+                  ? `https://eldrige.engineer/${userData.profile_picture}`
                   : profilePic
               }
               alt="Profile"

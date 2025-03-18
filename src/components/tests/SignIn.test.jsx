@@ -100,7 +100,7 @@ describe('SignIn Component', () => {
     fireEvent.click(submitButton);
     await waitFor(() => expect(axios.post).toHaveBeenCalledTimes(1));
     expect(axios.post).toHaveBeenCalledWith(
-      'http://3.86.29.108:8000/auth/login',
+      'https://eldrige.engineer/auth/login',
       {
         email: 'test@example.com',
         password: 'password123',

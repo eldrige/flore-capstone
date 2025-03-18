@@ -45,7 +45,7 @@ const AssessmentReport = () => {
   // Fetch report data
   useEffect(() => {
     setLoading(true);
-    fetch(`http://3.86.29.108:8000/api/assessment-report/${id}`)
+    fetch(`https://eldrige.engineer/api/assessment-report/${id}`)
       .then((response) => response.json())
       .then((data) => {
         const transformedData = {
@@ -87,7 +87,7 @@ const AssessmentReport = () => {
     const userId = decodedToken.id;
 
     fetch(
-      `http://3.86.29.108:8000/api/user-assessments/history?userId=${userId}`,
+      `https://eldrige.engineer/api/user-assessments/history?userId=${userId}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -129,7 +129,7 @@ const AssessmentReport = () => {
         return;
       }
 
-      const response = await axios.get('http://3.86.29.108:8000/api/profile', {
+      const response = await axios.get('https://eldrige.engineer/api/profile', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUserData(response.data);
@@ -204,7 +204,7 @@ const AssessmentReport = () => {
                 src={
                   userData.profile_picture.startsWith('http')
                     ? userData.profile_picture
-                    : `http://3.86.29.108:8000/${
+                    : `https://eldrige.engineer/${
                         userData.profile_picture.startsWith('/')
                           ? userData.profile_picture.substring(1)
                           : userData.profile_picture

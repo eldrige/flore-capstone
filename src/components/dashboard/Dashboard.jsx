@@ -76,7 +76,7 @@ const Dashboard = () => {
         return;
       }
 
-      const response = await axios.get('http://3.86.29.108:8000/api/profile', {
+      const response = await axios.get('https://eldrige.engineer/api/profile', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUserData(response.data);
@@ -95,7 +95,7 @@ const Dashboard = () => {
     try {
       setIsLoading(true);
       const response = await axios.get(
-        `http://3.86.29.108:8000/api/all-skills`,
+        `https://eldrige.engineer/api/all-skills`,
         {
           params: {
             page,
@@ -132,7 +132,7 @@ const Dashboard = () => {
       if (!token) return;
 
       const response = await axios.get(
-        `http://3.86.29.108:8000/api/user-assessments/history?userId=${userId}`,
+        `https://eldrige.engineer/api/user-assessments/history?userId=${userId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -169,7 +169,7 @@ const Dashboard = () => {
       if (!token) return;
 
       const response = await axios.get(
-        'http://3.86.29.108:8000/api/recommended-skills',
+        'https://eldrige.engineer/api/recommended-skills',
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -366,7 +366,7 @@ const Dashboard = () => {
                 src={
                   userData.profile_picture.startsWith('http')
                     ? userData.profile_picture
-                    : `http://3.86.29.108:8000/${
+                    : `https://eldrige.engineer/${
                         userData.profile_picture.startsWith('/')
                           ? userData.profile_picture.substring(1)
                           : userData.profile_picture

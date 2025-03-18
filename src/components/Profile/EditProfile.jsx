@@ -26,7 +26,7 @@ const EditProfile = ({ onClose, userData, onUpdate }) => {
       });
       setPreview(
         userData.profile_picture
-          ? `http://3.86.29.108:8000/${userData.profile_picture}`
+          ? `https://eldrige.engineer/${userData.profile_picture}`
           : ''
       );
     }
@@ -55,7 +55,7 @@ const EditProfile = ({ onClose, userData, onUpdate }) => {
 
       // Update text fields
       const profileResponse = await axios.put(
-        'http://3.86.29.108:8000/api/profile/update',
+        'https://eldrige.engineer/api/profile/update',
         formData,
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -70,7 +70,7 @@ const EditProfile = ({ onClose, userData, onUpdate }) => {
         formDataImage.append('profilePicture', profilePicture);
 
         const uploadResponse = await axios.post(
-          'http://3.86.29.108:8000/api/profile/upload',
+          'https://eldrige.engineer/api/profile/upload',
           formDataImage,
           {
             headers: {

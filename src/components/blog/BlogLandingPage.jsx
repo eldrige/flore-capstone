@@ -58,7 +58,7 @@ const BlogLandingPage = () => {
         return;
       }
 
-      const response = await axios.get('http://3.86.29.108:8000/api/profile', {
+      const response = await axios.get('https://eldrige.engineer/api/profile', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -74,7 +74,7 @@ const BlogLandingPage = () => {
 
   const fetchBlogPosts = async () => {
     try {
-      const response = await fetch('http://3.86.29.108:8000/api/blog-posts');
+      const response = await fetch('https://eldrige.engineer/api/blog-posts');
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -97,7 +97,7 @@ const BlogLandingPage = () => {
           image_path: post.image_path
             ? post.image_path.startsWith('http')
               ? post.image_path
-              : `http://3.86.29.108:8000/${
+              : `https://eldrige.engineer/${
                   post.image_path.startsWith('/')
                     ? post.image_path.substring(1)
                     : post.image_path
@@ -163,7 +163,7 @@ const BlogLandingPage = () => {
       }
 
       const response = await axios.post(
-        'http://3.86.29.108:8000/api/newsletter/subscribe',
+        'https://eldrige.engineer/api/newsletter/subscribe',
         { email }
       );
       setEmailStatus('Thank you for subscribing!');
@@ -273,7 +273,7 @@ const BlogLandingPage = () => {
                 src={
                   userData.profile_picture.startsWith('http')
                     ? userData.profile_picture
-                    : `http://3.86.29.108:8000/${
+                    : `https://eldrige.engineer/${
                         userData.profile_picture.startsWith('/')
                           ? userData.profile_picture.substring(1)
                           : userData.profile_picture

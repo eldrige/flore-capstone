@@ -90,7 +90,7 @@ describe('SignUp Component', () => {
     fireEvent.click(submitButton);
     await waitFor(() => expect(axios.post).toHaveBeenCalledTimes(1));
     expect(axios.post).toHaveBeenCalledWith(
-      'http://3.86.29.108:8000/auth/register',
+      'https://eldrige.engineer/auth/register',
       {
         name: 'Test User',
         email: 'test@example.com',

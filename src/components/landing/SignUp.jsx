@@ -10,7 +10,7 @@ const SignUp = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   // API URL (Replace with your actual backend URL)
-  const API_URL = 'http://3.86.29.108:8000/auth/register';
+  const API_URL = 'https://eldrige.engineer/auth/register';
 
   // Handle form submission
   const handleSubmit = async (e) => {

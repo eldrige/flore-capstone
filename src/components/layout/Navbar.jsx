@@ -1,7 +1,7 @@
 import React from 'react';
 import { Bell, User, Menu, X, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
-// http://3.86.29.108:8000/
+// https://eldrige.engineer/
 
 const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
   return (
