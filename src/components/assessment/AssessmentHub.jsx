@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Search, ChevronDown } from 'lucide-react';
 import axios from 'axios';
+import Navbar from '../Navbar';
 
 const Assessment = () => {
   const navigate = useNavigate();
@@ -12,6 +13,13 @@ const Assessment = () => {
   const [dateFilter, setDateFilter] = useState('all');
   const [userData, setUserData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+
+  const [showAllAssessments, setShowAllAssessments] = useState(false);
+
+  // Compute displayed assessments
+  const displayedAssessments = showAllAssessments
+    ? assessments
+    : assessments.slice(0, 6);
 
   useEffect(() => {
     fetchUserData();
@@ -122,6 +130,7 @@ const Assessment = () => {
           completion_date: assessment.completed_at,
           score: assessment.score,
           passed: assessment.score >= 70,
+          time_taken: assessment.time_taken,
         }));
 
         setUserAssessments(formattedData);
@@ -146,59 +155,7 @@ const Assessment = () => {
   return (
     <div className="min-h-screen flex flex-col justify-between bg-gray-50">
       {/* Navbar */}
-      <header className="flex justify-between items-center px-8 py-4 shadow-sm bg-white sticky top-0 z-10">
-        <h1 className="text-xl font-bold text-green-600">
-          Skills<span className="text-gray-900">Assess</span>
-        </h1>
-        <nav className="space-x-8">
-          <Link
-            to="/dashboard"
-            className="text-gray-700 hover:text-green-600 transition-colors"
-          >
-            Dashboard
-          </Link>
-          <Link
-            to="/assessments"
-            className="text-green-700 font-semibold border-b-2 border-green-500 pb-1"
-          >
-            Assessments
-          </Link>
-          <Link
-            to="/blog"
-            className="text-gray-700 hover:text-green-600 transition-colors"
-          >
-            Blog
-          </Link>
-        </nav>
-        <Link to="/profile" className="hover:opacity-80 transition-opacity">
-          <div className="w-10 h-10 rounded-full overflow-hidden ring-2 ring-green-500 ring-offset-2">
-            {userData?.profile_picture ? (
-              <img
-                src={
-                  userData.profile_picture.startsWith('http')
-                    ? userData.profile_picture
-                    : `https://eldrige.engineer/${
-                        userData.profile_picture.startsWith('/')
-                          ? userData.profile_picture.substring(1)
-                          : userData.profile_picture
-                      }`
-                }
-                alt="Profile"
-                className="w-10 h-10 object-cover"
-                onError={(e) => {
-                  e.target.src = '/default-profile.jpg';
-                }}
-              />
-            ) : (
-              <img
-                src="/default-profile.jpg"
-                alt="Profile"
-                className="w-10 h-10 object-cover"
-              />
-            )}
-          </div>
-        </Link>
-      </header>
+      <Navbar userData={userData} />
 
       {/* Main Content */}
       <main className="container mx-auto max-w-7xl py-10 px-4 sm:px-6 lg:px-8 flex-grow">
@@ -245,11 +202,12 @@ const Assessment = () => {
           <div className="px-2">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {assessments.length > 0 ? (
-                assessments.map((assessment) => (
+                displayedAssessments.map((assessment) => (
                   <div
                     key={assessment.id}
                     className="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden group"
                   >
+                    {/* Assessment card content remains the same */}
                     <div className="p-6">
                       <div className="flex justify-between items-start mb-4">
                         <div>
@@ -282,7 +240,7 @@ const Assessment = () => {
                           <span>
                             {assessment.attempts_allowed
                               ? 'Multiple attempts allowed'
-                              : 'Single attempt only'}
+                              : 'Multiple attempts'}
                           </span>
                         </div>
                       </div>
@@ -306,6 +264,19 @@ const Assessment = () => {
                 </div>
               )}
             </div>
+
+            {/* See More Button */}
+            {assessments.length > 6 && !showAllAssessments && (
+              <div className="flex justify-center mt-8">
+                <button
+                  onClick={() => setShowAllAssessments(true)}
+                  className="flex items-center px-8 py-3 bg-green-50 text-green-600 rounded-full hover:bg-green-100 transition-colors border border-green-300 hover:border-green-400 shadow-sm hover:shadow"
+                >
+                  See More Assessments
+                  <ChevronDown className="w-5 h-5" />
+                </button>
+              </div>
+            )}
           </div>
         </section>
 

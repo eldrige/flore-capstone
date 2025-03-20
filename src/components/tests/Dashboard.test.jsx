@@ -3,6 +3,8 @@ import { describe, test, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { MemoryRouter, Link } from 'react-router-dom';
 import Dashboard from '../dashboard/Dashboard';
+import axios from 'axios';
+import { vi } from 'vitest';
 
 // Mock axios
 vi.mock('axios');
@@ -65,15 +67,15 @@ describe('Dashboard UI Component', () => {
     const localStorage = {};
 
     axios.get = vi.fn().mockImplementation((url) => {
-      if (url === 'https://eldrige.engineer/api/profile') {
+      if (url === 'http://3.82.241.188/api/profile') {
         return mockResolvedValue(mockUserData);
       } else if (
-        url.startsWith('https://eldrige.engineer/api/user-assessments/history')
+        url.startsWith('http://3.82.241.188/api/user-assessments/history')
       ) {
         return mockResolvedValue(mockAssessmentHistory);
-      } else if (url === 'https://eldrige.engineer/api/all-skills') {
+      } else if (url === 'http://3.82.241.188/api/all-skills') {
         return mockResolvedValue({ skills: mockSkills, hasMore: false });
-      } else if (url === 'https://eldrige.engineer/api/recommended-skills') {
+      } else if (url === 'http://3.82.241.188/api/recommended-skills') {
         return mockResolvedValue({ skills: mockSkills, hasMore: false });
       }
       return Promise.reject(new Error('URL not mocked'));

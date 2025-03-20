@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { Menu, X } from 'lucide-react'; // Add this import for icons
 
 // Responsive Navbar Component
@@ -28,24 +28,20 @@ const Navbar = () => {
 
           {/* Desktop Navigation Links */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="/AboutUs" className="text-gray-600 hover:text-gray-800">
-              About Us
-            </a>
-            <a href="/ContactUs" className="text-gray-600 hover:text-gray-800">
-              Contact
-            </a>
+            <a href="/AboutUs" className="text-gray-600 hover:text-gray-800">About Us</a>
+            <a href="/ContactUs" className="text-gray-600 hover:text-gray-800">Contact</a>
           </div>
 
           {/* Desktop Authentication Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <button
-              onClick={() => navigate('/SignIn')}
+            <button 
+              onClick={() => navigate("/SignIn")} 
               className="text-gray-600 hover:text-gray-800"
             >
               Log In
             </button>
-            <button
-              onClick={() => navigate('/SignUp')}
+            <button 
+              onClick={() => navigate("/SignUp")} 
               className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
             >
               Sign Up
@@ -74,14 +70,14 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-lg rounded-b-lg">
-            <a
-              href="/AboutUs"
+            <a 
+              href="/AboutUs" 
               className="block px-3 py-2 rounded-md text-center font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-100"
             >
               About Us
             </a>
-            <a
-              href="/ContactUs"
+            <a 
+              href="/ContactUs" 
               className="block px-3 py-2 rounded-md text-center font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-100"
             >
               Contact
@@ -90,7 +86,7 @@ const Navbar = () => {
               <div className="flex items-center px-3">
                 <button
                   onClick={() => {
-                    navigate('/SignIn');
+                    navigate("/SignIn");
                     setIsMenuOpen(false);
                   }}
                   className="block w-full text-center px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-100"
@@ -101,7 +97,7 @@ const Navbar = () => {
               <div className="mt-3 px-3">
                 <button
                   onClick={() => {
-                    navigate('/SignUp');
+                    navigate("/SignUp");
                     setIsMenuOpen(false);
                   }}
                   className="block w-full text-center px-3 py-2 rounded-md text-base font-medium bg-green-600 hover:bg-green-700 text-white"
@@ -122,21 +118,21 @@ const AboutUs = () => {
   return (
     <div className="min-h-screen bg-green-500">
       <Navbar />
-
+      
       <main className="container mx-auto px-4 py-16">
         <div className="bg-white rounded-lg shadow-lg p-12 max-w-5xl mx-auto text-center">
           <h1 className="text-5xl font-bold mb-4">About Us</h1>
-
+          
           <p className="text-gray-600 text-xl mb-8">
             Trusted by top universities and industries
             <br />
             around the world.
           </p>
-
+          
           <div className="flex justify-center mb-8">
-            <img
+            <img 
               src="../../../assets/Landing_image.png"
-              alt="SkillsAssess Mascot"
+              alt="SkillsAssess Mascot" 
               className="width:128px; height:128px;"
             />
           </div>
