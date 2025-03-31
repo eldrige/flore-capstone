@@ -594,16 +594,16 @@ const BlogLandingPage = () => {
         <h1 className="text-green-700 font-bold">SkillsAssess</h1>
         <div className="max-w-md mx-auto mt-2">
           <p className="text-sm text-gray-600">
-            &copy; 2023 SkillsAssess. All rights reserved.
+            &copy; 2025 SkillsAssess. All rights reserved.
           </p>
           <div className="flex justify-center mt-2 text-xs text-gray-500 space-x-4">
-            <a href="#" className="hover:text-green-600">
+            <a href="/terms" className="hover:text-green-600">
               Privacy Policy
             </a>
-            <a href="#" className="hover:text-green-600">
+            <a href="/terms" className="hover:text-green-600">
               Terms of Service
             </a>
-            <a href="#" className="hover:text-green-600">
+            <a href="/terms" className="hover:text-green-600">
               Contact Us
             </a>
           </div>

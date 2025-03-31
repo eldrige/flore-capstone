@@ -1,9 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Shield } from 'lucide-react';
+import profilePic from '../assets/profile.jpg';
 
 const Navbar = ({ userData }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    console.log('Full userData object:', userData);
+    console.log('Admin status:', userData?.is_admin);
+    console.log('Type of admin status:', typeof userData?.is_admin);
+  }, [userData]);
+
+  useEffect(() => {
+    console.log('Full userData object:', userData);
+    console.log('Admin status:', userData?.is_admin);
+    console.log('Type of admin status:', typeof userData?.is_admin);
+  }, [userData]);
 
   // Debug logging
   useEffect(() => {
@@ -22,29 +35,6 @@ const Navbar = ({ userData }) => {
     'text-green-700 font-semibold border-b-2 border-green-500 pb-1';
   const inactiveNavLinkStyle =
     'text-gray-700 hover:text-green-600 transition-colors';
-
-  // Helper function to resolve profile picture URL
-  const getProfilePictureUrl = (profilePicture) => {
-    console.log('Resolving profile picture:', profilePicture);
-
-    if (!profilePicture) {
-      console.log('No profile picture, using default');
-      return '/default-profile.jpg';
-    }
-
-    if (profilePicture.startsWith('http')) {
-      console.log('External URL');
-      return profilePicture;
-    }
-
-    const cleanedPath = profilePicture.startsWith('/')
-      ? profilePicture.substring(1)
-      : profilePicture;
-
-    const resolvedUrl = `https://eldrige.engineer/${cleanedPath}`;
-    console.log('Resolved URL:', resolvedUrl);
-    return resolvedUrl;
-  };
 
   return (
     <header className="flex justify-between items-center px-4 md:px-8 py-4 shadow-sm bg-white sticky top-0 z-10">
@@ -99,6 +89,20 @@ const Navbar = ({ userData }) => {
         >
           Blog
         </NavLink>
+        {/* Admin Link - Only visible for admin users */}
+        {userData?.is_admin === 1 && (
+          <NavLink
+            to="/admin"
+            className={({ isActive }) =>
+              isActive ? activeNavLinkStyle : inactiveNavLinkStyle
+            }
+          >
+            <div className="flex items-center">
+              <Shield size={16} className="mr-1" />
+              Admin
+            </div>
+          </NavLink>
+        )}
       </nav>
 
       {/* Profile Picture */}
@@ -110,23 +114,16 @@ const Navbar = ({ userData }) => {
           {userData?.profile_picture ? (
             <img
               src={
-                userData.profile_picture.startsWith('http')
-                  ? userData.profile_picture
-                  : `https://eldrige.engineer/${
-                      userData.profile_picture.startsWith('/')
-                        ? userData.profile_picture.substring(1)
-                        : userData.profile_picture
-                    }`
+                userData.profile_picture
+                  ? `https://eldrige.engineer/${userData.profile_picture}`
+                  : profilePic
               }
               alt="Profile"
               className="w-10 h-10 object-cover"
-              onError={(e) => {
-                e.target.src = '/default-profile.jpg';
-              }}
             />
           ) : (
             <img
-              src="/default-profile.jpg"
+              src={profilePic}
               alt="Profile"
               className="w-10 h-10 object-cover"
             />
@@ -175,6 +172,22 @@ const Navbar = ({ userData }) => {
               Blog
             </NavLink>
 
+            {/* Admin Link in Mobile Menu - Only visible for admin users */}
+            {userData?.is_admin && (
+              <NavLink
+                to="/admin"
+                onClick={toggleMobileMenu}
+                className={({ isActive }) =>
+                  isActive ? activeNavLinkStyle : inactiveNavLinkStyle
+                }
+              >
+                <div className="flex items-center">
+                  <Shield size={16} className="mr-1" />
+                  Admin
+                </div>
+              </NavLink>
+            )}
+
             {/* Mobile Profile Picture */}
             <Link
               to="/profile"
@@ -185,23 +198,16 @@ const Navbar = ({ userData }) => {
                 {userData?.profile_picture ? (
                   <img
                     src={
-                      userData.profile_picture.startsWith('http')
-                        ? userData.profile_picture
-                        : `https://eldrige.engineer/${
-                            userData.profile_picture.startsWith('/')
-                              ? userData.profile_picture.substring(1)
-                              : userData.profile_picture
-                          }`
+                      userData.profile_picture
+                        ? `https://eldrige.engineer/${userData.profile_picture}`
+                        : profilePic
                     }
                     alt="Profile"
                     className="w-12 h-12 object-cover"
-                    onError={(e) => {
-                      e.target.src = '/default-profile.jpg';
-                    }}
                   />
                 ) : (
                   <img
-                    src="/default-profile.jpg"
+                    src={profilePic}
                     alt="Profile"
                     className="w-12 h-12 object-cover"
                   />
