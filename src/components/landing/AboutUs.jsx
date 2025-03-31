@@ -163,7 +163,7 @@ const AboutUs = () => {
           <div className="flex flex-col md:flex-row items-center p-8 md:p-12">
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
               <img 
-                src="../../../assets/Landing_image.png" 
+                src="Landing_image.jpeg" 
                 alt="SkillsAssess Mascot" 
                 className="w-100 h-100 object-contain transform transition-transform hover:scale-110"
               />

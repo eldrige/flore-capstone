@@ -192,7 +192,7 @@ const ContactUs = () => {
           {/* Image Section */}
           <div className="w-full md:w-1/2 bg-green-50 flex items-center justify-center p-8 md:p-12 order-2 md:order-1">
             <img
-              src="../../../assets/Landing_image.png"
+              src="Landing_image.jpeg"
               alt="SkillsAssess Contact Illustration"
               className="w-100 h-100 object-cover"
             />
