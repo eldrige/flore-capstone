@@ -155,7 +155,7 @@ const LandingPage = () => {
 
             <div className="flex justify-center">
               <img
-                src="../../../assets/Landing_image.jpeg"
+                src="../../assets/Landing_image.jpeg"
                 alt="SkillsAssess Mascot"
                 className="width: 100% h-100 object-cover"
               />
